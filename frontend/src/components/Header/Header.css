@@ -2,14 +2,15 @@
   background-color: #fff;
   height: 72px;
   border-bottom: 1px solid #DDD;
+  display: flex;
+  justify-content: space-between;
 }
-#main-header .header-content {
+.header-content {
   width: 100%;
   max-width: 980px;
   margin: auto;
-  padding: 0 30px;
-
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 }
