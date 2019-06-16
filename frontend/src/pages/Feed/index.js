@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../services/api'
+import io from 'socket.io-client'
 
 import './Feed.css'
 
@@ -13,9 +14,31 @@ class Feed extends Component {
     feed: []
   }
   async componentDidMount() {
+    this.registerToSocket();
+
     const response = await api.get('posts')
 
     this.setState({ feed: response.data })
+  }
+
+  registerToSocket = () => {
+    const socket = io('http://localhost:3333')
+
+    socket.on('post', newPost => {
+      this.setState({ feed: [newPost, ...this.state.feed] })
+    })
+
+    socket.on('like', likePost => {
+      this.setState({
+        feed: this.state.feed.map(post =>
+          post._id === likePost._id ? likePost : post
+        )
+      })
+    })
+  }
+
+  hendleLike = id => {
+    api.post(`posts/${id}/like`)
   }
   render() {
     return(
@@ -32,11 +55,13 @@ class Feed extends Component {
             <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
             <footer>
               <div className="actions">
-                <img src={like} alt=""/>
+                <button type="button" onClick={() => this.hendleLike(post._id)}>
+                  <img src={like} alt=""/>
+                </button>
                 <img src={comment} alt=""/>
                 <img src={send} alt=""/>
               </div>
-              <strong>{post.likes}</strong>
+              <strong>{post.likes} Curtidas</strong>
               <p>
                 {post.description}
                 <span>{post.hashtags}</span>
