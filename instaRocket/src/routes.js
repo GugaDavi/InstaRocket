@@ -13,7 +13,10 @@ export default createAppContainer(
     News
   }, {
     defaultNavigationOptions: {
-      headerTitle: <Image source={logo} />
-    }
+      headerTintColor: '#000',
+      headerTitle: <Image style={{ marginHorizontal: 20 }} source={logo} />,
+      headerBackTitle: null
+    },
+    mode: 'modal'
   })
 )
