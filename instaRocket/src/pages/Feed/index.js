@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client'
 import api from '../../services/api'
 
 import {
@@ -18,7 +19,7 @@ import comment from '../../assets/comment.png'
 import { FlatList } from 'react-native-gesture-handler';
 export default class Feed extends Component {
   static navigationOptions = ({ navigation }) => ({
-    henderRight: (
+    headerRight: (
       <TouchableOpacity style={{ marginRight: 20 }} onPress={() => navigation.navigate('News')}>
         <Image source={camera}/>
       </TouchableOpacity>
@@ -28,11 +29,31 @@ export default class Feed extends Component {
     feed: []
   }
   async componentDidMount() {
-    // this.registerToSocket();
+    this.registerToSocket();
 
     const response = await api.get('posts')
 
     this.setState({ feed: response.data })
+  }
+
+  registerToSocket = () => {
+    const socket = io('http://10.0.2.2:3333')
+
+    socket.on('post', newPost => {
+      this.setState({ feed: [newPost, ...this.state.feed] })
+    })
+
+    socket.on('like', likePost => {
+      this.setState({
+        feed: this.state.feed.map(post =>
+          post._id === likePost._id ? likePost : post
+        )
+      })
+    })
+  }
+
+  hendleLike = id => {
+    api.post(`posts/${id}/like`)
   }
 
   render() {
@@ -53,7 +74,7 @@ export default class Feed extends Component {
             <Image style={styles.feedImage} source={{ uri: `http://10.0.2.2:3333/files/${item.image}` }}/>
             <View style={styles.feedItemFooter}>
               <View style={styles.actions}>
-                <TouchableOpacity style={styles.action}>
+                <TouchableOpacity style={styles.action} onPress={() => this.hendleLike(item._id)}>
                   <Image source={like}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.action}>
@@ -92,6 +113,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
+    fontWeight: 'bold',
     color: '#000',
   },
   place: {
