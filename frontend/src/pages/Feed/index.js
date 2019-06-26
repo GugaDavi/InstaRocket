@@ -50,7 +50,9 @@ class Feed extends Component {
                 <span>{post.author}</span>
                 <span className="place">{post.place}</span>
               </div>
-              <img src={more} alt="mais"/>
+              <button type="button" onClick={() => {}}>
+                <img src={more} alt="mais"/>
+              </button>
             </header>
             <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
             <footer>

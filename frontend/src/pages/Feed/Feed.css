@@ -16,6 +16,11 @@ section#post-list article header {
   align-items: center;
   justify-content: space-between;
 }
+section#post-list article header button {
+  background: transparent;
+  border: 0px;
+  cursor: pointer;
+}
 section#post-list article header .user-info {
   display: flex;
   flex-direction: column;
