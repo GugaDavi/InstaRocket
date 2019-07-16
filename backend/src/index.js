@@ -19,6 +19,7 @@ App.use((req, res, next) => {
 })
 
 App.use(cors())
+App.use(express.json())
 
 App.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')))
 
