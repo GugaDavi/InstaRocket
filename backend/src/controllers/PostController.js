@@ -37,5 +37,13 @@ module.exports = {
     req.io.emit('post', post)
 
     return res.json(post)
+  },
+
+  async destroy(req, res) {
+    const post =  await Post.findById(req.params.id)
+
+    await post.delete()
+
+    return res.send()
   }
 }
