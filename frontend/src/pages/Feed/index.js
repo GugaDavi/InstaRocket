@@ -11,7 +11,7 @@ import send from '../../assets/send.svg'
 
 class Feed extends Component {
   state =  {
-    feed: []
+    feed: [],
   }
   async componentDidMount() {
     this.registerToSocket();
@@ -57,17 +57,27 @@ class Feed extends Component {
             <img src={`http://localhost:3333/files/${post.image}`} alt=""/>
             <footer>
               <div className="actions">
-                <button type="button" onClick={() => this.hendleLike(post._id)}>
-                  <img src={like} alt=""/>
-                </button>
-                <img src={comment} alt=""/>
-                <img src={send} alt=""/>
+                <div className="curtidas">
+                  <button type="button" onClick={() => this.hendleLike(post._id)}>
+                    <img src={like} alt=""/>
+                  </button><span>{post.likes}</span>
+                </div>
+                <div className="curtidas">
+                  <button type="button">
+                    <img className="curtidas"src={comment} alt=""/>
+                  </button><span>{post.comments.length}</span>
+                </div>
+                <img className="curtidas" src={send} alt=""/>
               </div>
-              <strong>{post.likes} Curtidas</strong>
               <p>
                 {post.description}
                 <span>{post.hashtags}</span>
               </p>
+              {post.comments.map((comment, index) => (
+                <ul>
+                  <li key={index}><strong>{comment.author}</strong> <span>{comment.comment}</span></li>
+                </ul>
+              ))}
             </footer>
           </article>
         )) }

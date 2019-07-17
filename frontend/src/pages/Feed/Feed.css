@@ -8,6 +8,7 @@ section#post-list article {
   background: #FFF;
   border: 1px solid #DDD;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 section#post-list article header {
   padding: 20px;
@@ -40,12 +41,30 @@ section#post-list article footer {
   padding: 20px;
 }
 section#post-list article footer .actions {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: start;
+  position: relative;
+
+  padding-bottom: 10px;
 }
+section#post-list article footer .actions div.curtidas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section#post-list article footer .actions div.curtidas span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.curtidas {
+}
+
 section#post-list article footer .actions button {
   background: transparent;
   border: 0px;
   cursor: pointer;
+  margin-right: 5px;
 }
 section#post-list article footer .action img {
   height: 20px;
@@ -54,10 +73,20 @@ section#post-list article footer .action img {
 section#post-list article footer p {
   font-size: 13px;
   margin-top: 2px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
   line-height: 18px;
+  border-bottom: 1px solid #eee;
+
 }
 section#post-list article footer p span {
   color: #7159c1;
   display: block;
+}
+section#post-list article footer ul {
+  list-style: none;
+}
+section#post-list article footer ul li {
+  font-size: 12px;
 }
 
