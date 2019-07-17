@@ -44,6 +44,8 @@ module.exports = {
 
     await post.delete()
 
+    req.io.emit('delete', post)
+
     return res.send()
   }
 }

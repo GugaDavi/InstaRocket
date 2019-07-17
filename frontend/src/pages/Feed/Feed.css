@@ -12,6 +12,7 @@ section#post-list article {
 }
 section#post-list article header {
   padding: 20px;
+  position: relative;
 
   display: flex;
   align-items: center;
@@ -21,6 +22,24 @@ section#post-list article header button {
   background: transparent;
   border: 0px;
   cursor: pointer;
+}
+section#post-list article header button.excluir {
+  position: absolute;
+  bottom: -15px;
+  right: 20px;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.2s linear;
+
+  padding: 10px 20px;
+  background-color: #ff3333;
+  border-radius: 10px;
+  border-top-right-radius: 0px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+section#post-list article header button.excluir:hover {
+  background-color: #e60000;
 }
 section#post-list article header .user-info {
   display: flex;
@@ -57,9 +76,6 @@ section#post-list article footer .actions div.curtidas span {
   margin-right: 5px;
 }
 
-.curtidas {
-}
-
 section#post-list article footer .actions button {
   background: transparent;
   border: 0px;
@@ -70,6 +86,34 @@ section#post-list article footer .action img {
   height: 20px;
   margin-right: 10px;
 }
+
+section#post-list article footer form.addComment {
+  display: flex;
+  height: 30px;
+  transition: all 0.2s linear;
+}
+section#post-list article footer form.addComment input.author {
+  width: 70px;
+  border: 0px;
+  padding: 0px 5px;
+  border: 1px solid #eee;
+}
+section#post-list article footer form.addComment input.comment {
+  flex: 1;
+  border: 0px;
+  padding: 0px 5px;
+  border: 1px solid #eee;
+}
+section#post-list article footer form.addComment button {
+  border: 0px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #7159c1;
+  padding: 0px 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
 section#post-list article footer p {
   font-size: 13px;
   margin-top: 2px;
@@ -85,6 +129,7 @@ section#post-list article footer p span {
 }
 section#post-list article footer ul {
   list-style: none;
+  margin-bottom: 10px;
 }
 section#post-list article footer ul li {
   font-size: 12px;

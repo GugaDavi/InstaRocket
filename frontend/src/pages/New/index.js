@@ -47,6 +47,7 @@ class New extends Component {
           placeholder="Autor"
           onChange={this.hendleChange}
           value={this.state.author}
+          autocomplete="off"
         />
         <input
           type="text"
@@ -54,6 +55,7 @@ class New extends Component {
           placeholder="Local"
           onChange={this.hendleChange}
           value={this.state.place}
+          autocomplete="off"
         />
         <input
           type="text"
@@ -61,6 +63,7 @@ class New extends Component {
           placeholder="Legenda"
           onChange={this.hendleChange}
           value={this.state.description}
+          autocomplete="off"
         />
         <input
           type="text"
@@ -68,6 +71,7 @@ class New extends Component {
           placeholder="Hashtags"
           onChange={this.hendleChange}
           value={this.state.hashtags}
+          autocomplete="off"
         />
         <button type="submit">Enviar</button>
       </form>

@@ -11,6 +11,8 @@ module.exports ={
 
     await post.save()
 
+    req.io.emit('comment', post)
+
     return res.json(post)
   }
 }
